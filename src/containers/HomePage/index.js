@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router";
 
-import {propTypes, defaultProps} from "./types";
 import {connected} from "./connect";
 import styles from "./styles.module.scss";
 import {Link} from "react-router-dom";
@@ -15,10 +14,10 @@ class HomePageBase extends Component {
 	};
 
 	renderMoviesList = () => {
+		const {movies} = this.props;
 
-		if (Array.isArray(this.props.movies)) {
+		if (Array.isArray(movies) && movies.length > 0) {
 			return this.props.movies.map((item, i) => {
-				console.log(item);
 				return (
 					<div key={item.id} className={styles.movieContainer}>
 						<div>
@@ -45,8 +44,13 @@ class HomePageBase extends Component {
 					</div>
 				);
 			});
+		} else {
+			return (
+				<h2>
+					No movies found :(
+				</h2>
+			)
 		}
-
 	};
 
 	render() {
@@ -67,8 +71,6 @@ class HomePageBase extends Component {
 }
 
 const HomePageConnected = connected(HomePageBase);
-HomePageConnected.propTypes = propTypes;
-HomePageConnected.defaultProps = defaultProps;
 
 // Create a new component that is "connected" (to borrow redux
 // terminology) to the router.

@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router";
+import {propTypes} from "./types";
+import {connected} from "./connect";
 
 export class HeaderBase extends Component {
 
@@ -9,10 +11,9 @@ export class HeaderBase extends Component {
 	}
 
 	search = () => {
-		console.log(this.searchInput);
-		if (this.searchInput) {
+		const {value} = this.searchInput.current;
 
-		}
+		this.props.searchMovie(value);
 	};
 
 	render() {
@@ -43,4 +44,7 @@ export class HeaderBase extends Component {
 	}
 }
 
-export const Header = withRouter(HeaderBase);
+const HeaderConnected = connected(HeaderBase);
+HeaderConnected.propTypes = propTypes;
+
+export const Header = withRouter(HeaderConnected);
