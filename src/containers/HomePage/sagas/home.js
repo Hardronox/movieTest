@@ -10,11 +10,9 @@ import {errorFindingMoviesMessage, errorLoadingMoviesMessage} from '../../../mes
 export function* getMoviesDataSaga() {
 	try {
 		const response = movies;
-		console.log(response);
 
 		if (response) {
 			yield put({type: GET_MOVIE_DATA_SUCCESS, payload: response});
-
 		} else {
 			yield put({type: GET_MOVIE_DATA_ERROR, payload: errorLoadingMoviesMessage});
 		}
@@ -25,7 +23,6 @@ export function* getMoviesDataSaga() {
 
 // in case of working with an api - here would be no filtering(just request to the server)
 export function* searchMovieSaga(data) {
-	console.log(data.payload);
 	try {
 		const response = movies;
 

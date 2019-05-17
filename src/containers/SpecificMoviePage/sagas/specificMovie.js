@@ -6,6 +6,7 @@ import movies from '../../../fixtures/movies'
 import {errorFindingMoviesMessage} from '../../../messages'
 
 
+// here we're finding movie from the list by id
 export function* getSpecificMovieSaga(data) {
   try {
     const response = movies;

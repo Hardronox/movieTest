@@ -7,7 +7,6 @@ import styles from "./styles.module.scss";
 import {Header} from "../../components/Header";
 import {isEmptyObject} from "../../servises/utils";
 import {errorFindingSpecificMovieMessage} from '../../messages'
-import {Link} from "react-router-dom";
 
 
 class SpecificMoviePageBase extends Component {
@@ -37,11 +36,17 @@ class SpecificMoviePageBase extends Component {
 
 					<div className={styles.movieDescription}>
 						<div>
-							Genre: Comedy
-							<br/>
-							Rating: 10
+							<h2>Info</h2>
+							<div>
+								Genre: Comedy
+								<br/>
+								Rating: 10
+							</div>
 						</div>
-						<div>{specificMovie.movie_description}</div>
+						<div>
+							<h2>Description</h2>
+							{specificMovie.movie_description}
+						</div>
 					</div>
 
 				</div>

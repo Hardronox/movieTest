@@ -37,12 +37,12 @@ export class HeaderBase extends Component {
 					? (
 						<input
 							type="text"
+							placeholder="Search..."
 							ref={this.searchInput}
 							onChange={this.search}
 						/>
 					) : null
 				}
-
 			</div>
 		);
 	}
