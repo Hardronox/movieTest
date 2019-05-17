@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {Header} from "../../components/Header";
 
 
-class HomePageBase extends Component {
+export class HomePageBase extends Component {
 
 	componentDidMount() {
 		this.props.getMoviesData();

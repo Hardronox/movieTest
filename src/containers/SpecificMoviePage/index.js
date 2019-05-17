@@ -9,7 +9,7 @@ import {isEmptyObject} from "../../servises/utils";
 import {errorFindingSpecificMovieMessage} from '../../messages'
 
 
-class SpecificMoviePageBase extends Component {
+export class SpecificMoviePageBase extends Component {
 
 	componentDidMount() {
 		// param has String type, but we need it to be Int
