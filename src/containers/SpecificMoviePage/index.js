@@ -1,101 +1,79 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router";
 
-import {propTypes, defaultProps} from "./types";
 import {connected} from "./connect";
 import styles from "./styles.module.scss";
 
-import {
-	// getCartProgressBarStepsStatuses,
-	// getCartStepName,
-	// getCartStepsDirections,
-} from "./helpers";
-import {Link} from "react-router-dom";
 import {Header} from "../../components/Header";
+import {isEmptyObject} from "../../servises/utils";
+import {errorFindingSpecificMovieMessage} from '../../messages'
+import {Link} from "react-router-dom";
 
 
-class HomePageBase extends Component {
-
-	constructor(props) {
-		super(props);
-
-		this.input = React.createRef();
-	}
-
-	state = {
-		isInitValiditySet: false,
-		isTermsOfService: false,
-	};
+class SpecificMoviePageBase extends Component {
 
 	componentDidMount() {
-		// this.setStepsDataOnInit();
-
+		// param has String type, but we need it to be Int
+		this.props.getSpecificMovieData(parseInt(this.props.match.params.id));
 	};
 
-	addTodo = () => {
-		// this.props.addTodo();
+	renderMovieBlock = () => {
+		const {specificMovie} = this.props;
 
-		console.log(this.myRef.current);
-	};
+		if (!isEmptyObject(specificMovie)) {
+			return (
+				<div key={specificMovie.id} className={styles.movieContainer}>
+					<div className={styles.imageTitle}>
+						<div>
+							<img src={specificMovie.movie_image} alt=""/>
+						</div>
 
-	removeTodo = () => {
-		// this.props.removeTodo();
-
-	};
-
-	renderMoviesList = () => {
-console.log(styles);
-console.log(styles.movieDescription);
-		// return this.props.map((item, i) => {
-		return (
-			<div key={'a'} className={styles.movieContainer}>
-				<div>
-					<img src="https://www.w3schools.com/w3css/img_lights.jpg" alt=""/>
-				</div>
-
-				<div className={styles.movieDescription}>
-					<h2 className={styles.title}>
-						Title
-					</h2>
-
-					<div>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, asperiores beatae blanditiis deserunt earum eius ex id inventore necessitatibus nisi,
-						numquam odio, quos reiciendis reprehenderit saepe sequi tempora voluptates voluptatum.
+						<div>
+							<h2 className={styles.title}>
+								{specificMovie.movie_title}
+							</h2>
+						</div>
 					</div>
 
-					<div className={styles.viewButton}>
-						<Link to={`/movie/${'i'}`}>
-							<button>
-								View
-							</button>
-						</Link>
+					<div className={styles.movieDescription}>
+						<div>
+							Genre: Comedy
+							<br/>
+							Rating: 10
+						</div>
+						<div>{specificMovie.movie_description}</div>
 					</div>
+
 				</div>
-			</div>
-		);
-		// });
+			);
+		} else {
+			return (
+				<h2>
+					{errorFindingSpecificMovieMessage}
+				</h2>
+			)
+		}
 	};
 
 	render() {
-		console.log('kek');
 
 		return (
-			<div className={styles.homepageContainer}>
+			<>
 				<Header
 					showBackButton={true}
 					showSearchBar={false}
 				/>
 
-				{this.renderMoviesList()}
-			</div>
+				<div className={styles.specificMovieContainer}>
+					{this.renderMovieBlock()}
+				</div>
+			</>
 		);
 	}
 }
 
-const HomePageConnected = connected(HomePageBase);
-HomePageConnected.propTypes = propTypes;
-HomePageConnected.defaultProps = defaultProps;
+const SpecificMovieConnected = connected(SpecificMoviePageBase);
 
 // Create a new component that is "connected" (to borrow redux
 // terminology) to the router.
-export const HomePage = withRouter(HomePageConnected);
+export const SpecificMovie = withRouter(SpecificMovieConnected);

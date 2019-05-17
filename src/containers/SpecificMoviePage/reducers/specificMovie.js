@@ -1,13 +1,11 @@
 import {
-  GET_MOVIE_DATA_SUCCESS, GET_MOVIE_DATA_ERROR,
-  SEARCH_MOVIE_SUCCESS, SEARCH_MOVIE_ERROR,
   GET_SINGLE_MOVIE_DATA_SUCCESS, GET_SINGLE_MOVIE_DATA_ERROR
 } from "../../../constants/actionTypes";
 import {getReducerStatusError, getReducerStatusSuccess} from "../../../helpers/reducerHelpers";
 
 
 export const initialState = {
-  singleMovie: {},
+  specificMovie: {},
 
   error: null,
   isLoading: false,
@@ -21,7 +19,7 @@ const specificMovieReducer = (state = initialState, action) => {
     case GET_SINGLE_MOVIE_DATA_SUCCESS: {
       return {
         ...state,
-        movies: payload,
+        specificMovie: payload,
         ...getReducerStatusSuccess(),
       };
     }

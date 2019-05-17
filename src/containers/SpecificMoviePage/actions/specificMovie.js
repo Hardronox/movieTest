@@ -3,7 +3,7 @@ import {
 } from "../../../constants/actionTypes";
 
 
-export const getSingleMovieData = (id) => ({
+export const getSpecificMovieData = (id) => ({
 	type: GET_SINGLE_MOVIE_DATA_PENDING,
 	payload: id,
 });

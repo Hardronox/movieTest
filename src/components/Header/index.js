@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {withRouter} from "react-router";
 import {propTypes} from "./types";
 import {connected} from "./connect";
+import {PathHome} from "../../routes/constants";
+import {Link} from "react-router-dom";
 
 export class HeaderBase extends Component {
 
@@ -20,12 +22,14 @@ export class HeaderBase extends Component {
 		const {showBackButton, showSearchBar} = this.props;
 
 		return (
-			<div className="header">
+			<div className={`header ${showSearchBar ? 'flex-end' : null}`}>
 				{showBackButton
 					? (
-						<button>
-							Back
-						</button>
+						<Link to={PathHome}>
+							<button>
+								Back
+							</button>
+						</Link>
 					) : null
 				}
 

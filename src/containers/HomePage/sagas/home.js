@@ -4,7 +4,7 @@ import {
 	SEARCH_MOVIE_PENDING, SEARCH_MOVIE_SUCCESS, SEARCH_MOVIE_ERROR
 } from "../../../constants/actionTypes";
 import movies from '../../../fixtures/movies'
-import {errorFindingMoviesMessage, errorLoadingMoviesMessage} from '../messages'
+import {errorFindingMoviesMessage, errorLoadingMoviesMessage} from '../../../messages'
 
 
 export function* getMoviesDataSaga() {
@@ -30,8 +30,6 @@ export function* searchMovieSaga(data) {
 		const response = movies;
 
 		const filteredResponse = response.filter((item) => {
-			console.log(item);
-			console.log(item.movie_title.indexOf(data.payload));
 			return (item.movie_title.indexOf(data.payload) !== -1 || item.movie_description.indexOf(data.payload) !== -1);
 		});
 

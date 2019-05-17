@@ -3,16 +3,16 @@ import {
   GET_SINGLE_MOVIE_DATA_PENDING, GET_SINGLE_MOVIE_DATA_SUCCESS, GET_SINGLE_MOVIE_DATA_ERROR
 } from "../../../constants/actionTypes";
 import movies from '../../../fixtures/movies'
-import {errorFindingMoviesMessage} from '../messages'
+import {errorFindingMoviesMessage} from '../../../messages'
 
 
-export function* getSingleMovieSaga(data) {
+export function* getSpecificMovieSaga(data) {
   try {
     const response = movies;
-    console.log(response);
+    const movie = response.find((movie => movie.id === data.payload));
 
-    if (response) {
-      yield put({type: GET_SINGLE_MOVIE_DATA_SUCCESS, payload: response});
+    if (movie) {
+      yield put({type: GET_SINGLE_MOVIE_DATA_SUCCESS, payload: movie});
     } else {
       yield put({type: GET_SINGLE_MOVIE_DATA_ERROR, payload: errorFindingMoviesMessage});
     }
@@ -25,7 +25,7 @@ export function* getSingleMovieSaga(data) {
  * Connect actions to generators
  */
 function* specificMovieSaga() {
-  yield takeEvery(GET_SINGLE_MOVIE_DATA_PENDING, getSingleMovieSaga);
+  yield takeEvery(GET_SINGLE_MOVIE_DATA_PENDING, getSpecificMovieSaga);
 }
 
 export default specificMovieSaga;

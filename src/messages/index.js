@@ -1,4 +1,3 @@
-export const MessageNotValidRequiredAddToCartData = "The requiredAddToCartData is not valid";
-export const MessageEmptyDataForAddToCart = "The data for adding to cart is not valid!";
-export const MessageEmptyModalDataForAddToCart = "The data for adding to cart is not valid.";
-
+export const errorLoadingMoviesMessage = `Can't load movies!`;
+export const errorFindingMoviesMessage = `Can't find movies!`;
+export const errorFindingSpecificMovieMessage = `Can't find such movie :(`;
